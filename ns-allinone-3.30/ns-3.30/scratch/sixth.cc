@@ -62,15 +62,15 @@ NS_LOG_COMPONENT_DEFINE ("SixthScriptExample");
 class MyApp : public Application
 {
 public:
-  MyApp ();
-  virtual ~MyApp ();
+  MyApp ();    // constructor
+  virtual ~MyApp ();      // destructor
 
   /**
    * Register this type.
    * \return The TypeId.
    */
   static TypeId GetTypeId (void);
-  void Setup (Ptr<Socket> socket, Address address, uint32_t packetSize, uint32_t nPackets, DataRate dataRate);
+  void Setup (Ptr<Socket> socket, Address address, uint32_t packetSize, uint32_t nPackets, DataRate dataRate);   // 32 bit packet size
 
 private:
   virtual void StartApplication (void);
@@ -79,7 +79,7 @@ private:
   void ScheduleTx (void);
   void SendPacket (void);
 
-  Ptr<Socket>     m_socket;
+  Ptr<Socket>     m_socket;                               // pointer template?
   Address         m_peer;
   uint32_t        m_packetSize;
   uint32_t        m_nPackets;
@@ -89,8 +89,8 @@ private:
   uint32_t        m_packetsSent;
 };
 
-MyApp::MyApp ()
-  : m_socket (0),
+MyApp::MyApp ()                    // call the constructor
+  : m_socket (0),                   // initial values in ()
     m_peer (),
     m_packetSize (0),
     m_nPackets (0),
@@ -101,13 +101,13 @@ MyApp::MyApp ()
 {
 }
 
-MyApp::~MyApp ()
+MyApp::~MyApp ()                       // destructor
 {
-  m_socket = 0;
+  m_socket = 0;              
 }
 
 /* static */
-TypeId MyApp::GetTypeId (void)
+TypeId MyApp::GetTypeId (void)       // class is MtApp
 {
   static TypeId tid = TypeId ("MyApp")
     .SetParent<Application> ()
@@ -130,7 +130,7 @@ MyApp::Setup (Ptr<Socket> socket, Address address, uint32_t packetSize, uint32_t
 void
 MyApp::StartApplication (void)
 {
-  m_running = true;
+  m_running = true;                         // initialize to true since running it
   m_packetsSent = 0;
   m_socket->Bind ();
   m_socket->Connect (m_peer);
@@ -138,18 +138,18 @@ MyApp::StartApplication (void)
 }
 
 void
-MyApp::StopApplication (void)
+MyApp::StopApplication (void)                // stop application
 {
-  m_running = false;
+  m_running = false;                         // flag to false
 
   if (m_sendEvent.IsRunning ())
     {
-      Simulator::Cancel (m_sendEvent);
+      Simulator::Cancel (m_sendEvent); 
     }
 
   if (m_socket)
     {
-      m_socket->Close ();
+      m_socket->Close ();                   // close the socket
     }
 }
 
@@ -170,15 +170,18 @@ MyApp::ScheduleTx (void)
 {
   if (m_running)
     {
-      Time tNext (Seconds (m_packetSize * 8 / static_cast<double> (m_dataRate.GetBitRate ())));
-      m_sendEvent = Simulator::Schedule (tNext, &MyApp::SendPacket, this);
+      Time tNext (Seconds (m_packetSize * 8 / static_cast<double> (m_dataRate.GetBitRate ())));   // since packetsize in bytes // calculate timings, then bit rate
+      m_sendEvent = Simulator::Schedule (tNext, &MyApp::SendPacket, this);                  // simulator schedules it (time, name of app, corresponding scheduletx)
     }
 }
 
+//TCP - slow start threshold(exponential increase), congestion avoidance(additive increase), detection(multiplicative decrease)
+// => need to know both old and new congestion window
+
 static void
-CwndChange (Ptr<OutputStreamWrapper> stream, uint32_t oldCwnd, uint32_t newCwnd)
+CwndChange (Ptr<OutputStreamWrapper> stream, uint32_t oldCwnd, uint32_t newCwnd)  // OutputStreamWrapper - means we want to print something to a file (stream,old , new)
 {
-  NS_LOG_UNCOND (Simulator::Now ().GetSeconds () << "\t" << newCwnd);
+  NS_LOG_UNCOND (Simulator::Now ().GetSeconds () << "\t" << newCwnd);              
   *stream->GetStream () << Simulator::Now ().GetSeconds () << "\t" << oldCwnd << "\t" << newCwnd << std::endl;
 }
 
