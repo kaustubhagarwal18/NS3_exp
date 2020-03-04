@@ -42,7 +42,7 @@ main (int argc, char *argv[])
   uint32_t nCsma = 3;        // number of nodes
 
   CommandLine cmd;           // log devices?
-  cmd.AddValue ("nCsma", "Number of \"extra\" CSMA nodes/devices", nCsma);
+  cmd.AddValue ("nCsma", "Number of \"extra\" CSMA nodes/devices", nCsma);  // can use this parameter from command line like - ./waf --run "scratch/second --nCsma=5"
   cmd.AddValue ("verbose", "Tell echo applications to log if true", verbose);
 
   cmd.Parse (argc,argv);
