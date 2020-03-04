@@ -59,7 +59,7 @@ main (int argc, char *argv[])
   p2pNodes.Create (2);
 
   NodeContainer csmaNodes;                                        // create csma nodes         
-  csmaNodes.Add (p2pNodes.Get (1));                               // maybe since it belongs to both networks?
+  csmaNodes.Add (p2pNodes.Get (1));                               // maybe since it belongs to both networks?, node 1 has both p2p and csma devices
   csmaNodes.Create (nCsma);                                       // create rest nodes(3 in this case)
 
   PointToPointHelper pointToPoint;                                // create the device
