@@ -12,7 +12,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
- */
+ */l
 
 #include "ns3/core-module.h"
 #include "ns3/point-to-point-module.h"
@@ -70,6 +70,8 @@ main (int argc, char *argv[])
       LogComponentEnable ("UdpEchoServerApplication", LOG_LEVEL_INFO);
     }
 
+  // P2P nodes 
+
   NodeContainer p2pNodes;
   p2pNodes.Create (2);
 
@@ -79,6 +81,8 @@ main (int argc, char *argv[])
 
   NetDeviceContainer p2pDevices;
   p2pDevices = pointToPoint.Install (p2pNodes);
+
+  // CSMA nodes(LAN)
 
   NodeContainer csmaNodes;
   csmaNodes.Add (p2pNodes.Get (1));
@@ -91,25 +95,29 @@ main (int argc, char *argv[])
   NetDeviceContainer csmaDevices;
   csmaDevices = csma.Install (csmaNodes);
 
+  // WiFi Devices
+
   NodeContainer wifiStaNodes;
   wifiStaNodes.Create (nWifi);
   NodeContainer wifiApNode = p2pNodes.Get (0);
-
+  // configure phy for the channel
   YansWifiChannelHelper channel = YansWifiChannelHelper::Default ();
   YansWifiPhyHelper phy = YansWifiPhyHelper::Default ();
   phy.SetChannel (channel.Create ());
 
   WifiHelper wifi;
-  wifi.SetRemoteStationManager ("ns3::AarfWifiManager");
-
+  wifi.SetRemoteStationManager ("ns3::AarfWifiManager");   // use AARF algo for rate control algo
+  // conifigure mac for the channel
   WifiMacHelper mac;
   Ssid ssid = Ssid ("ns-3-ssid");
-  mac.SetType ("ns3::StaWifiMac",
-               "Ssid", SsidValue (ssid),
-               "ActiveProbing", BooleanValue (false));
+  mac.SetType ("ns3::StaWifiMac",                                     // type of mac
+               "Ssid", SsidValue (ssid),               
+               "ActiveProbing", BooleanValue (false));               // don't want probing
 
   NetDeviceContainer staDevices;
   staDevices = wifi.Install (phy, mac, wifiStaNodes);
+
+  // configured sta nodes, now need to configure AP   (no qos for both)
 
   mac.SetType ("ns3::ApWifiMac",
                "Ssid", SsidValue (ssid));
@@ -117,7 +125,7 @@ main (int argc, char *argv[])
   NetDeviceContainer apDevices;
   apDevices = wifi.Install (phy, mac, wifiApNode);
 
-  MobilityHelper mobility;
+  MobilityHelper mobility;                                           // mobility for sta and non mobile for AP
 
   mobility.SetPositionAllocator ("ns3::GridPositionAllocator",
                                  "MinX", DoubleValue (0.0),
@@ -127,7 +135,7 @@ main (int argc, char *argv[])
                                  "GridWidth", UintegerValue (3),
                                  "LayoutType", StringValue ("RowFirst"));
 
-  mobility.SetMobilityModel ("ns3::RandomWalk2dMobilityModel",
+  mobility.SetMobilityModel ("ns3::RandomWalk2dMobilityModel",                                     // randomm walks for STA
                              "Bounds", RectangleValue (Rectangle (-50, 50, -50, 50)));
   mobility.Install (wifiStaNodes);
 
