@@ -32,9 +32,9 @@ int main (int argc, char *argv[])
   CommandLine cmd;                          // can use this as a cmd argument
   cmd.Parse (argc, argv);
   
-  Time::SetResolution (Time::NS);
-  LogComponentEnable ("UdpEchoClientApplication", LOG_LEVEL_INFO);
-  LogComponentEnable ("UdpEchoServerApplication", LOG_LEVEL_INFO);
+  Time::SetResolution (Time::NS); // The resolution is the smallest time value that can be represented (as well as the smallest representable difference between two time values)
+  LogComponentEnable ("UdpEchoClientApplication", LOG_LEVEL_INFO); //These two lines of code enable debug logging at the INFO level for echo clients and servers.
+  LogComponentEnable ("UdpEchoServerApplication", LOG_LEVEL_INFO); // This will result in the application printing out messages as packets are sent and received during the simulation.
 
   NodeContainer nodes;                             // create a object named nodes from class NodeContainer
   nodes.Create (2);                                // Number of nodes
