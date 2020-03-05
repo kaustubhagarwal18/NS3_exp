@@ -3,8 +3,13 @@
 Basic traffic shaping experiemnt at the router end. 
 
 Keep current script in the scratch folder.
-
+./waf to build
 Commands to run ~/Desktop/ns-allinone-3.30/ns-3.30$ ./waf --run scratch/first
+
+Logging - 
+NS_LOG_COMPONENT_DEFINE ("RealtimeUdpEchoExample");  // define the logging component
+NS_LOG=RealtimeUdpEchoExample=info                // run in terminal to enable the logging component
+
 
 Debugging commeent - NS_LOG_UNCOND ("Test");  // logging variable
 
