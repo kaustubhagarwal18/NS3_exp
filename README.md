@@ -10,6 +10,7 @@ Logging -
 NS_LOG_COMPONENT_DEFINE ("RealtimeUdpEchoExample");  // define the logging component
 NS_LOG=RealtimeUdpEchoExample=info                // run in terminal to enable the logging component
 
+./waf --run traffic-control > traffic-control.dat 2>&1             // save it to dat file
 
 Debugging commeent - NS_LOG_UNCOND ("Test");  // logging variable
 
