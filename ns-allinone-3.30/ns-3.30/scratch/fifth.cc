@@ -59,7 +59,19 @@ NS_LOG_COMPONENT_DEFINE ("FifthScriptExample");
 // install in the source node.
 // ===========================================================================
 //
-class MyApp : public Application 
+
+/*
+ $ ./waf --run fifth > cwnd.dat 2>&1  ---- save output to the file
+  $ gnuplot                           ------ plotting
+gnuplot> set terminal png size 640,480
+gnuplot> set output "cwnd.png"
+gnuplot> plot "cwnd.dat" using 1:2 title 'Congestion Window' with linespoints
+gnuplot> exit
+
+*/
+
+
+class MyApp : public Application                    // declaration of the MyApp Application that we put together to allow the Socket to be created at configuration time. 
 {
 public:
 
@@ -85,7 +97,7 @@ private:
   uint32_t        m_packetsSent;
 };
 
-MyApp::MyApp ()
+MyApp::MyApp ()                          // constructor
   : m_socket (0), 
     m_peer (), 
     m_packetSize (0), 
@@ -97,12 +109,12 @@ MyApp::MyApp ()
 {
 }
 
-MyApp::~MyApp()
+MyApp::~MyApp()                          // destructor
 {
   m_socket = 0;
 }
 
-void
+void                                      // initialize member variables
 MyApp::Setup (Ptr<Socket> socket, Address address, uint32_t packetSize, uint32_t nPackets, DataRate dataRate)
 {
   m_socket = socket;
@@ -113,40 +125,40 @@ MyApp::Setup (Ptr<Socket> socket, Address address, uint32_t packetSize, uint32_t
 }
 
 void
-MyApp::StartApplication (void)
+MyApp::StartApplication (void)                             // start the application, running = true, packets_sent should be 0 at start
 {
   m_running = true;
   m_packetsSent = 0;
-  m_socket->Bind ();
-  m_socket->Connect (m_peer);
-  SendPacket ();
+  m_socket->Bind ();                                           // bind socket to a partcular port
+  m_socket->Connect (m_peer);                                  // connect to the ip address
+  SendPacket ();                                               // start sending packets
 }
 
 void 
-MyApp::StopApplication (void)
+MyApp::StopApplication (void)                                // stop the application, running = false 
 {
   m_running = false;
 
-  if (m_sendEvent.IsRunning ())
+  if (m_sendEvent.IsRunning ())                   // if IsRunning() returns true, we Cancel the event which removes it from the simulator event queue
     {
       Simulator::Cancel (m_sendEvent);
     }
 
   if (m_socket)
     {
-      m_socket->Close ();
+      m_socket->Close ();                                  // close the socket
     }
 }
 
 void 
-MyApp::SendPacket (void)
+MyApp::SendPacket (void)                                   // create a packet and send it
 {
   Ptr<Packet> packet = Create<Packet> (m_packetSize);
-  m_socket->Send (packet);
+  m_socket->Send (packet);                                 // send the packet from the socket(endpoint)
 
-  if (++m_packetsSent < m_nPackets)
+  if (++m_packetsSent < m_nPackets)                       // check if all packets sent?
     {
-      ScheduleTx ();
+      ScheduleTx ();                                      // schedule transmission
     }
 }
 
@@ -155,7 +167,8 @@ MyApp::ScheduleTx (void)
 {
   if (m_running)
     {
-      Time tNext (Seconds (m_packetSize * 8 / static_cast<double> (m_dataRate.GetBitRate ())));
+      Time tNext (Seconds (m_packetSize * 8 / static_cast<double> (m_dataRate.GetBitRate ())));   // need to have low bitrate than the channel or schedule at different time  to prevent overflow
+      NS_LOG_INFO (m_dataRate.GetBitRate ());
       m_sendEvent = Simulator::Schedule (tNext, &MyApp::SendPacket, this);
     }
 }
@@ -188,6 +201,18 @@ main (int argc, char *argv[])
   NetDeviceContainer devices;
   devices = pointToPoint.Install (nodes);
 
+/*
+The next few lines of code show something new. 
+If we trace a connection that behaves perfectly, we will end up with a monotonically increasing congestion window. 
+To see any interesting behavior, we really want to introduce link errors which will drop packets, 
+cause duplicate ACKs and trigger the more interesting behaviors of the congestion window.
+
+ns-3 provides ErrorModel objects which can be attached to Channels.
+ We are using the RateErrorModel which allows us to introduce errors into a Channel at a given rate.
+
+*/
+
+
   Ptr<RateErrorModel> em = CreateObject<RateErrorModel> ();
   em->SetAttribute ("ErrorRate", DoubleValue (0.00001));
   devices.Get (1)->SetAttribute ("ReceiveErrorModel", PointerValue (em));
@@ -198,7 +223,11 @@ main (int argc, char *argv[])
   Ipv4AddressHelper address;
   address.SetBase ("10.1.1.0", "255.255.255.252");
   Ipv4InterfaceContainer interfaces = address.Assign (devices);
+/*
+Since we are using TCP, we need something on the destination Node to receive TCP connections and data. 
+The PacketSink Application is commonly used in ns-3 for that purpose.
 
+*/
   uint16_t sinkPort = 8080;
   Address sinkAddress (InetSocketAddress (interfaces.GetAddress (1), sinkPort));
   PacketSinkHelper packetSinkHelper ("ns3::TcpSocketFactory", InetSocketAddress (Ipv4Address::GetAny (), sinkPort));

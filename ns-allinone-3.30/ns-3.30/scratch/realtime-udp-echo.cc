@@ -33,7 +33,7 @@
 
 using namespace ns3;
 
-NS_LOG_COMPONENT_DEFINE ("RealtimeUdpEchoExample");  // need to enable this by typing export NS_LOG=RealtimeUdpEchoExample=info
+NS_LOG_COMPONENT_DEFINE ("RealtimeUdpEchoExample");
 
 int 
 main (int argc, char *argv[])
