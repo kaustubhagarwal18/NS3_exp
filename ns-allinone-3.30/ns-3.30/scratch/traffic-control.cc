@@ -64,24 +64,24 @@
 
 using namespace ns3;
 
-NS_LOG_COMPONENT_DEFINE ("TrafficControlExample");
+NS_LOG_COMPONENT_DEFINE ("TrafficControlExample");               // define the logging component
 
 void
-TcPacketsInQueueTrace (uint32_t oldValue, uint32_t newValue)
+TcPacketsInQueueTrace (uint32_t oldValue, uint32_t newValue)                           // packets in queue
 {
   std::cout << "TcPacketsInQueue " << oldValue << " to " << newValue << std::endl;
 }
 
 void
-DevicePacketsInQueueTrace (uint32_t oldValue, uint32_t newValue)
+DevicePacketsInQueueTrace (uint32_t oldValue, uint32_t newValue)                           // packets queued at device(ideally should be 1)
 {
   std::cout << "DevicePacketsInQueue " << oldValue << " to " << newValue << std::endl;
 }
 
 void
-SojournTimeTrace (Time sojournTime)
+SojournTimeTrace (Time sojournTime)                            // amount of time an object is expected to spend in a system before leaving the system for good.
 {
-  std::cout << "Sojourn time " << sojournTime.ToDouble (Time::MS) << "ms" << std::endl;
+  std::cout << "Sojourn time "  << sojournTime.ToDouble (Time::MS) << "ms" << std::endl;
 }
 
 int
@@ -95,7 +95,7 @@ main (int argc, char *argv[])
   cmd.AddValue ("transportProt", "Transport protocol to use: Tcp, Udp", transportProt);
   cmd.Parse (argc, argv);
 
-  if (transportProt.compare ("Tcp") == 0)
+  if (transportProt.compare ("Tcp") == 0)                         // check if Tcp mentioned by user otherwise make Udp
     {
       socketType = "ns3::TcpSocketFactory";
     }
@@ -105,12 +105,12 @@ main (int argc, char *argv[])
     }
 
   NodeContainer nodes;
-  nodes.Create (2);
+  nodes.Create (2);                                                  // create the nodes
 
   PointToPointHelper pointToPoint;
   pointToPoint.SetDeviceAttribute ("DataRate", StringValue ("10Mbps"));
   pointToPoint.SetChannelAttribute ("Delay", StringValue ("2ms"));
-  pointToPoint.SetQueue ("ns3::DropTailQueue", "MaxSize", StringValue ("1p"));
+  pointToPoint.SetQueue ("ns3::DropTailQueue", "MaxSize", StringValue ("1p"));          // set the queue size on the devices to be 1?
 
   NetDeviceContainer devices;
   devices = pointToPoint.Install (nodes);
