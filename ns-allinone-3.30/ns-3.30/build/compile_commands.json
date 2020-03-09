@@ -7216,17 +7216,17 @@
   },
   {
     "directory": "/home/kaus/Desktop/NS3_exp/ns-allinone-3.30/ns-3.30/build",
-    "command": "/usr/bin/g++ -O0 -ggdb -g3 -Wall -Werror -std=c++11 -fstrict-aliasing -Wstrict-aliasing -pthread -I. -I.. -I/usr/include/libxml2 -DNS3_BUILD_PROFILE_DEBUG -DNS3_ASSERT_ENABLE -DNS3_LOG_ENABLE -DHAVE_SYS_IOCTL_H=1 -DHAVE_IF_NETS_H=1 -DHAVE_NET_ETHERNET_H=1 -DHAVE_PACKET_H=1 -DHAVE_SQLITE3=1 -DHAVE_IF_TUN_H=1 -DHAVE_GSL=1 ../scratch/fifth.cc -c -o/home/kaus/Desktop/NS3_exp/ns-allinone-3.30/ns-3.30/build/scratch/fifth.cc.18.o",
+    "command": "/usr/bin/g++ -O0 -ggdb -g3 -Wall -Werror -std=c++11 -fstrict-aliasing -Wstrict-aliasing -pthread -I. -I.. -I/usr/include/libxml2 -DNS3_BUILD_PROFILE_DEBUG -DNS3_ASSERT_ENABLE -DNS3_LOG_ENABLE -DHAVE_SYS_IOCTL_H=1 -DHAVE_IF_NETS_H=1 -DHAVE_NET_ETHERNET_H=1 -DHAVE_PACKET_H=1 -DHAVE_SQLITE3=1 -DHAVE_IF_TUN_H=1 -DHAVE_GSL=1 ../scratch/fifth.cc -c -o/home/kaus/Desktop/NS3_exp/ns-allinone-3.30/ns-3.30/build/scratch/fifth.cc.19.o",
     "file": "../scratch/fifth.cc"
   },
   {
     "directory": "/home/kaus/Desktop/NS3_exp/ns-allinone-3.30/ns-3.30/build",
-    "command": "/usr/bin/g++ -O0 -ggdb -g3 -Wall -Werror -std=c++11 -fstrict-aliasing -Wstrict-aliasing -pthread -I. -I.. -I/usr/include/libxml2 -DNS3_BUILD_PROFILE_DEBUG -DNS3_ASSERT_ENABLE -DNS3_LOG_ENABLE -DHAVE_SYS_IOCTL_H=1 -DHAVE_IF_NETS_H=1 -DHAVE_NET_ETHERNET_H=1 -DHAVE_PACKET_H=1 -DHAVE_SQLITE3=1 -DHAVE_IF_TUN_H=1 -DHAVE_GSL=1 ../scratch/seventh.cc -c -o/home/kaus/Desktop/NS3_exp/ns-allinone-3.30/ns-3.30/build/scratch/seventh.cc.20.o",
+    "command": "/usr/bin/g++ -O0 -ggdb -g3 -Wall -Werror -std=c++11 -fstrict-aliasing -Wstrict-aliasing -pthread -I. -I.. -I/usr/include/libxml2 -DNS3_BUILD_PROFILE_DEBUG -DNS3_ASSERT_ENABLE -DNS3_LOG_ENABLE -DHAVE_SYS_IOCTL_H=1 -DHAVE_IF_NETS_H=1 -DHAVE_NET_ETHERNET_H=1 -DHAVE_PACKET_H=1 -DHAVE_SQLITE3=1 -DHAVE_IF_TUN_H=1 -DHAVE_GSL=1 ../scratch/seventh.cc -c -o/home/kaus/Desktop/NS3_exp/ns-allinone-3.30/ns-3.30/build/scratch/seventh.cc.22.o",
     "file": "../scratch/seventh.cc"
   },
   {
     "directory": "/home/kaus/Desktop/NS3_exp/ns-allinone-3.30/ns-3.30/build",
-    "command": "/usr/bin/g++ -O0 -ggdb -g3 -Wall -Werror -std=c++11 -fstrict-aliasing -Wstrict-aliasing -pthread -I. -I.. -I/usr/include/libxml2 -DNS3_BUILD_PROFILE_DEBUG -DNS3_ASSERT_ENABLE -DNS3_LOG_ENABLE -DHAVE_SYS_IOCTL_H=1 -DHAVE_IF_NETS_H=1 -DHAVE_NET_ETHERNET_H=1 -DHAVE_PACKET_H=1 -DHAVE_SQLITE3=1 -DHAVE_IF_TUN_H=1 -DHAVE_GSL=1 ../scratch/fourth.cc -c -o/home/kaus/Desktop/NS3_exp/ns-allinone-3.30/ns-3.30/build/scratch/fourth.cc.21.o",
+    "command": "/usr/bin/g++ -O0 -ggdb -g3 -Wall -Werror -std=c++11 -fstrict-aliasing -Wstrict-aliasing -pthread -I. -I.. -I/usr/include/libxml2 -DNS3_BUILD_PROFILE_DEBUG -DNS3_ASSERT_ENABLE -DNS3_LOG_ENABLE -DHAVE_SYS_IOCTL_H=1 -DHAVE_IF_NETS_H=1 -DHAVE_NET_ETHERNET_H=1 -DHAVE_PACKET_H=1 -DHAVE_SQLITE3=1 -DHAVE_IF_TUN_H=1 -DHAVE_GSL=1 ../scratch/fourth.cc -c -o/home/kaus/Desktop/NS3_exp/ns-allinone-3.30/ns-3.30/build/scratch/fourth.cc.23.o",
     "file": "../scratch/fourth.cc"
   },
   {
@@ -7256,12 +7256,12 @@
   },
   {
     "directory": "/home/kaus/Desktop/NS3_exp/ns-allinone-3.30/ns-3.30/build",
-    "command": "/usr/bin/g++ -O0 -ggdb -g3 -Wall -Werror -std=c++11 -fstrict-aliasing -Wstrict-aliasing -pthread -I. -I.. -I/usr/include/libxml2 -DNS3_BUILD_PROFILE_DEBUG -DNS3_ASSERT_ENABLE -DNS3_LOG_ENABLE -DHAVE_SYS_IOCTL_H=1 -DHAVE_IF_NETS_H=1 -DHAVE_NET_ETHERNET_H=1 -DHAVE_PACKET_H=1 -DHAVE_SQLITE3=1 -DHAVE_IF_TUN_H=1 -DHAVE_GSL=1 ../scratch/red-vs-fengadaptive.cc -c -o/home/kaus/Desktop/NS3_exp/ns-allinone-3.30/ns-3.30/build/scratch/red-vs-fengadaptive.cc.17.o",
+    "command": "/usr/bin/g++ -O0 -ggdb -g3 -Wall -Werror -std=c++11 -fstrict-aliasing -Wstrict-aliasing -pthread -I. -I.. -I/usr/include/libxml2 -DNS3_BUILD_PROFILE_DEBUG -DNS3_ASSERT_ENABLE -DNS3_LOG_ENABLE -DHAVE_SYS_IOCTL_H=1 -DHAVE_IF_NETS_H=1 -DHAVE_NET_ETHERNET_H=1 -DHAVE_PACKET_H=1 -DHAVE_SQLITE3=1 -DHAVE_IF_TUN_H=1 -DHAVE_GSL=1 ../scratch/red-vs-fengadaptive.cc -c -o/home/kaus/Desktop/NS3_exp/ns-allinone-3.30/ns-3.30/build/scratch/red-vs-fengadaptive.cc.18.o",
     "file": "../scratch/red-vs-fengadaptive.cc"
   },
   {
     "directory": "/home/kaus/Desktop/NS3_exp/ns-allinone-3.30/ns-3.30/build",
-    "command": "/usr/bin/g++ -O0 -ggdb -g3 -Wall -Werror -std=c++11 -fstrict-aliasing -Wstrict-aliasing -pthread -I. -I.. -I/usr/include/libxml2 -DNS3_BUILD_PROFILE_DEBUG -DNS3_ASSERT_ENABLE -DNS3_LOG_ENABLE -DHAVE_SYS_IOCTL_H=1 -DHAVE_IF_NETS_H=1 -DHAVE_NET_ETHERNET_H=1 -DHAVE_PACKET_H=1 -DHAVE_SQLITE3=1 -DHAVE_IF_TUN_H=1 -DHAVE_GSL=1 ../scratch/red-vs-nlred.cc -c -o/home/kaus/Desktop/NS3_exp/ns-allinone-3.30/ns-3.30/build/scratch/red-vs-nlred.cc.19.o",
+    "command": "/usr/bin/g++ -O0 -ggdb -g3 -Wall -Werror -std=c++11 -fstrict-aliasing -Wstrict-aliasing -pthread -I. -I.. -I/usr/include/libxml2 -DNS3_BUILD_PROFILE_DEBUG -DNS3_ASSERT_ENABLE -DNS3_LOG_ENABLE -DHAVE_SYS_IOCTL_H=1 -DHAVE_IF_NETS_H=1 -DHAVE_NET_ETHERNET_H=1 -DHAVE_PACKET_H=1 -DHAVE_SQLITE3=1 -DHAVE_IF_TUN_H=1 -DHAVE_GSL=1 ../scratch/red-vs-nlred.cc -c -o/home/kaus/Desktop/NS3_exp/ns-allinone-3.30/ns-3.30/build/scratch/red-vs-nlred.cc.21.o",
     "file": "../scratch/red-vs-nlred.cc"
   },
   {
@@ -7283,5 +7283,15 @@
     "directory": "/home/kaus/Desktop/NS3_exp/ns-allinone-3.30/ns-3.30/build",
     "command": "/usr/bin/g++ -O0 -ggdb -g3 -Wall -Werror -std=c++11 -fstrict-aliasing -Wstrict-aliasing -pthread -I. -I.. -I/usr/include/libxml2 -DNS3_BUILD_PROFILE_DEBUG -DNS3_ASSERT_ENABLE -DNS3_LOG_ENABLE -DHAVE_SYS_IOCTL_H=1 -DHAVE_IF_NETS_H=1 -DHAVE_NET_ETHERNET_H=1 -DHAVE_PACKET_H=1 -DHAVE_SQLITE3=1 -DHAVE_IF_TUN_H=1 -DHAVE_GSL=1 ../scratch/internet-simple.cc -c -o/home/kaus/Desktop/NS3_exp/ns-allinone-3.30/ns-3.30/build/scratch/internet-simple.cc.12.o",
     "file": "../scratch/internet-simple.cc"
+  },
+  {
+    "directory": "/home/kaus/Desktop/NS3_exp/ns-allinone-3.30/ns-3.30/build",
+    "command": "/usr/bin/g++ -O0 -ggdb -g3 -Wall -Werror -std=c++11 -fstrict-aliasing -Wstrict-aliasing -pthread -I. -I.. -I/usr/include/libxml2 -DNS3_BUILD_PROFILE_DEBUG -DNS3_ASSERT_ENABLE -DNS3_LOG_ENABLE -DHAVE_SYS_IOCTL_H=1 -DHAVE_IF_NETS_H=1 -DHAVE_NET_ETHERNET_H=1 -DHAVE_PACKET_H=1 -DHAVE_SQLITE3=1 -DHAVE_IF_TUN_H=1 -DHAVE_GSL=1 ../scratch/socket-bound-static-routing.cc -c -o/home/kaus/Desktop/NS3_exp/ns-allinone-3.30/ns-3.30/build/scratch/socket-bound-static-routing.cc.17.o",
+    "file": "../scratch/socket-bound-static-routing.cc"
+  },
+  {
+    "directory": "/home/kaus/Desktop/NS3_exp/ns-allinone-3.30/ns-3.30/build",
+    "command": "/usr/bin/g++ -O0 -ggdb -g3 -Wall -Werror -std=c++11 -fstrict-aliasing -Wstrict-aliasing -pthread -I. -I.. -I/usr/include/libxml2 -DNS3_BUILD_PROFILE_DEBUG -DNS3_ASSERT_ENABLE -DNS3_LOG_ENABLE -DHAVE_SYS_IOCTL_H=1 -DHAVE_IF_NETS_H=1 -DHAVE_NET_ETHERNET_H=1 -DHAVE_PACKET_H=1 -DHAVE_SQLITE3=1 -DHAVE_IF_TUN_H=1 -DHAVE_GSL=1 ../scratch/simple-global-routing.cc -c -o/home/kaus/Desktop/NS3_exp/ns-allinone-3.30/ns-3.30/build/scratch/simple-global-routing.cc.20.o",
+    "file": "../scratch/simple-global-routing.cc"
   }
 ]
