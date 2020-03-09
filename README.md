@@ -12,7 +12,20 @@ NS_LOG=RealtimeUdpEchoExample=info                // run in terminal to enable t
 
 ./waf --run traffic-control > traffic-control.dat 2>&1             // save it to dat file
 
-Debugging commeent - NS_LOG_UNCOND ("Test");  // logging variable
+Debugging comment - NS_LOG_UNCOND ("Test");  // logging variable
+
+# On-OFF Application
+
+  OnOffHelper onoff2 ("ns3::UdpSocketFactory",
+                      InetSocketAddress (i1i6.GetAddress (1), port));                               // Address of node which will receive traffic
+  onoff2.SetAttribute ("OnTime", StringValue ("ns3::ConstantRandomVariable[Constant=1]"));
+  onoff2.SetAttribute ("OffTime", StringValue ("ns3::ConstantRandomVariable[Constant=0]"));
+  onoff2.SetAttribute ("DataRate", StringValue ("2kbps"));
+  onoff2.SetAttribute ("PacketSize", UintegerValue (50));
+
+  ApplicationContainer apps2 = onoff2.Install (c.Get (1));          // Address of node which will send traffic
+    apps2.Start (Seconds (11.0));
+  apps2.Stop (Seconds (16.0));
 
 ## Netanim stuff
 
