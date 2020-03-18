@@ -14,6 +14,13 @@ NS_LOG=RealtimeUdpEchoExample=info                // run in terminal to enable t
 
 Debugging comment - NS_LOG_UNCOND ("Test");  // logging variable
 
+
+NS_LOG="SimpleGlobalRoutingExample"=info ./waf --run scratch/simple-global-routing
+
+tcpdump -nn -tt -r simple-global-routing-0-1.pcap
+
+
+
 # On-OFF Application
 
   OnOffHelper onoff2 ("ns3::UdpSocketFactory",

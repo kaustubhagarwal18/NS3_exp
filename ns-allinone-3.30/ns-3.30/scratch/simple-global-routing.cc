@@ -39,6 +39,7 @@
 #include <string>
 #include <cassert>
 
+#include "ns3/netanim-module.h"
 #include "ns3/core-module.h"
 #include "ns3/network-module.h"
 #include "ns3/internet-module.h"
@@ -56,9 +57,9 @@ main (int argc, char *argv[])
 {
   // Users may find it convenient to turn on explicit debugging
   // for selected modules; the below lines suggest how to do this
-#if 0 
+
   LogComponentEnable ("SimpleGlobalRoutingExample", LOG_LEVEL_INFO);
-#endif
+
 
   // Set up some default values for the simulation.  Use the 
   Config::SetDefault ("ns3::OnOffApplication::PacketSize", UintegerValue (210));
@@ -116,32 +117,38 @@ main (int argc, char *argv[])
 
   // Create the OnOff application to send UDP datagrams of size
   // 210 bytes at a rate of 448 Kb/s
-  NS_LOG_INFO ("Create Applications.");
+ NS_LOG_INFO ("Create Applications.");
   uint16_t port = 9;   // Discard port (RFC 863)
   OnOffHelper onoff ("ns3::UdpSocketFactory", 
-                     Address (InetSocketAddress (i3i2.GetAddress (0), port)));
+                     Address (InetSocketAddress (i3i2.GetAddress (0), port)));   // destination port and address
   onoff.SetConstantRate (DataRate ("448kb/s"));
-  ApplicationContainer apps = onoff.Install (c.Get (0));
+  ApplicationContainer apps = onoff.Install (c.Get (0));                         // install on source
+  NS_LOG_UNCOND (c.Get (0));
+
+  // N0 ------ N3  
+  NS_LOG_INFO (i3i2.GetAddress(0));
+ 
   apps.Start (Seconds (1.0));
   apps.Stop (Seconds (10.0));
 
   // Create a packet sink to receive these packets
   PacketSinkHelper sink ("ns3::UdpSocketFactory",
-                         Address (InetSocketAddress (Ipv4Address::GetAny (), port)));
-  apps = sink.Install (c.Get (3));
+                         Address (InetSocketAddress (Ipv4Address::GetAny (), port)));    // create sink              
+  NS_LOG_INFO(Ipv4Address::GetAny ());         
+  apps = sink.Install (c.Get (3));                                                      // install on destination
   apps.Start (Seconds (1.0));
   apps.Stop (Seconds (10.0));
 
   // Create a similar flow from n3 to n1, starting at time 1.1 seconds
   onoff.SetAttribute ("Remote", 
-                      AddressValue (InetSocketAddress (i1i2.GetAddress (0), port)));
-  apps = onoff.Install (c.Get (3));
-  apps.Start (Seconds (1.1));
+                      AddressValue (InetSocketAddress (i1i2.GetAddress (0), port)));   
+  apps = onoff.Install (c.Get (3));                                                    // install on source
+  apps.Start (Seconds (4.1));
   apps.Stop (Seconds (10.0));
 
   // Create a packet sink to receive these packets
   apps = sink.Install (c.Get (1));
-  apps.Start (Seconds (1.1));
+  apps.Start (Seconds (4.1));
   apps.Stop (Seconds (10.0));
 
   AsciiTraceHelper ascii;
@@ -164,6 +171,8 @@ main (int argc, char *argv[])
     {
       flowmonHelper.SerializeToXmlFile ("simple-global-routing.flowmon", false, false);
     }
+
+  AnimationInterface anim ("demo.xml");  
 
   Simulator::Destroy ();
   return 0;
